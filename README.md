@@ -19,17 +19,15 @@ The **Cyclist Safety System** aims to enhance cyclist safety by detecting obstac
 
 1. **add_search_window**: Adds a search window to the image, highlighting a central region for object detection.
 2. **build_pyramid_in_roi**: Creates an image pyramid for the region of interest (ROI) to improve multi-scale detection.
-3. **apply_roi_mask**: Applies a triangular mask to the detected region (person) in the image.
-4. **perform_YOLO_detection_on_roi**: Detects objects in the ROI using the YOLO model and returns bounding boxes.
+3. **apply_roi_mask**: Applies a triangular mask to image to detect only in this triangular region.
 5. **perform_SSD_detection_on_roi**: Detects objects in the ROI using the MobileNet SSD model and returns bounding boxes.
-6. **load_yolo_lite_model**: Loads the YOLO Lite model and its configuration.
 7. **load_mobilenet_ssd_model**: Loads the MobileNet SSD model for object detection.
 8. **draw_bounding_boxes**: Draws bounding boxes around detected objects with labels and confidence scores.
 
 ### Workflow:
 
 - **Frame Processing**: Each video frame is converted to grayscale, and a search window is applied to focus on potential hazard areas.
-- **Object Detection**: The system uses either YOLO Lite or MobileNet SSD to detect objects in the ROI and draws bounding boxes around them.
+- **Object Detection**: The system uses MobileNet SSD to detect objects in the ROI and draws bounding boxes around them.
 - **Frame Saving**: Frames with detected objects are saved for later review.
 - **Real-time Display**: Processed frames are shown in real-time, with the option to stop playback by pressing 'q'.
 - 
