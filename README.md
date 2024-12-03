@@ -54,7 +54,7 @@ The **Cyclist Safety System** aims to enhance cyclist safety by detecting obstac
 
 Run the system with:
 ```bash
-python Model Detection in Video.py
+python Model_Detection_Video.py
 ```
 
 The system will process the video and detect objects, saving frames with detections to the `detected_frames` folder.
