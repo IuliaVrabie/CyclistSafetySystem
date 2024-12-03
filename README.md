@@ -30,7 +30,7 @@ The **Cyclist Safety System** aims to enhance cyclist safety by detecting obstac
 - **Object Detection**: The system uses MobileNet SSD to detect objects in the ROI and draws bounding boxes around them.
 - **Frame Saving**: Frames with detected objects are saved for later review.
 - **Real-time Display**: Processed frames are shown in real-time, with the option to stop playback by pressing 'q'.
-- 
+  
 ### Model:
 
 - **MobileNet SSD**: A pre-trained deep learning model designed for object detection tasks, including detecting people, cars, and bicycles.
@@ -43,7 +43,7 @@ The **Cyclist Safety System** aims to enhance cyclist safety by detecting obstac
    ```
 2. Install the required dependencies:
    ```bash
-   pip install opencv-python numpy
+   pip install opencv-python numpy tensorflow
    ```
 3. Download the necessary model files for MobileNet SSD and place them in the `files/` directory.
   - https://github.com/MediosZ/MobileNet-SSD/blob/master/mobilenet/MobileNetSSD_deploy.prototxt
