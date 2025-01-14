@@ -1,42 +1,34 @@
-# CyclistSafetySystem
+# Cyclist Safety System
 
 ## Overview
+The Cyclist Safety System is designed to enhance cyclist safety by detecting potential hazards in real time. The project incorporates hardware components like cameras and sensors, along with software implementations for hazard detection.
 
-The **Cyclist Safety System** aims to enhance cyclist safety by detecting obstacles, such as pedestrians, vehicles, and other bikes, in real-time. This system is designed to be implemented on a Raspberry Pi 4, camera and a laser range finder to help detect hazards from a distance. The system activates an alarm when a potential collision is detected.
+In this repo you can find two implementations, each designed to address safety in distinct ways:
 
-## Features
+1. **Camera-based Hazard Detection**
+2. **LIDAR-based Hazard Detection**
 
-- **Object Detection**: Detects pedestrians, bicycles, and vehicles using YOLO Lite or MobileNet SSD models.
-- **Search Window**: Automatically identifies a region of interest (ROI) in each video frame for efficient hazard detection.
-- **Pyramid Image Processing**: Uses image pyramids to improve detection accuracy at different scales.
-- **Real-time Video Processing**: Analyzes video frames for object detection, drawing bounding boxes around detected objects.
+---
+
+## 1. Camera-based Hazard Detection
+
+This implementation uses a camera to monitor the cyclist's surroundings and detect potential hazards, such as vehicles, pedestrians, and other cyclists. Machine learning algorithms are employed to process the video feed and identify obstacles in real time.
+
+
+### Features
+
+- **Object Detection**: Detects pedestrians, bicycles, and vehicles using YOLO model.
+- **Search Window**: Automatically identifies a region of interest (ROI) for efficient hazard detection.
+- **Pyramid Image Processing**: Uses image pyramids to reduced computational complexity.
+- **Real-time Video Processing**: Analyzes video frames for object detection.
 - **Automatic Frame Saving**: Saves frames with detected objects for later review.
-- **Customizable Detection Models**: Supports YOLO Lite and MobileNet SSD models for object detection.
 
-## Code Explanation
+### Requirements
+- A Raspberry Pi 4 Model B (or equivalent).
+- Python 3.7+.
+- Pre-trained object detection model (e.g., YOLO).
 
-### Functions:
-
-1. **add_search_window**: Adds a search window to the image, highlighting a central region for object detection.
-2. **build_pyramid_in_roi**: Creates an image pyramid for the region of interest (ROI) to improve multi-scale detection.
-3. **apply_roi_mask**: Applies a triangular mask to image to detect only in this triangular region.
-5. **perform_SSD_detection_on_roi**: Detects objects in the ROI using the MobileNet SSD model and returns bounding boxes.
-7. **load_mobilenet_ssd_model**: Loads the MobileNet SSD model for object detection.
-8. **draw_bounding_boxes**: Draws bounding boxes around detected objects with labels and confidence scores.
-
-### Workflow:
-
-- **Frame Processing**: Each video frame is converted to grayscale, and a search window is applied to focus on potential hazard areas.
-- **Object Detection**: The system uses MobileNet SSD to detect objects in the ROI and draws bounding boxes around them.
-- **Frame Saving**: Frames with detected objects are saved for later review.
-- **Real-time Display**: Processed frames are shown in real-time, with the option to stop playback by pressing 'q'.
-  
-### Model:
-
-- **MobileNet SSD**: A pre-trained deep learning model designed for object detection tasks, including detecting people, cars, and bicycles.
-
-## Installation
-
+### Installation
 1. Clone the repository:
    ```bash
    git clone https://github.com/IuliaVrabie/CyclistSafetySystem.git
@@ -48,26 +40,64 @@ The **Cyclist Safety System** aims to enhance cyclist safety by detecting obstac
 3. Download the necessary model files for MobileNet SSD and place them in the `files/` directory.
   - https://github.com/MediosZ/MobileNet-SSD/blob/master/mobilenet/MobileNetSSD_deploy.prototxt
   - https://github.com/PINTO0309/MobileNet-SSD-RealSense/blob/master/caffemodel/MobileNetSSD/MobileNetSSD_deploy.caffemodel
+
 4. Adjust the paths in the code to point to your video file and model weights.
 
-## Usage
-
-Run the system with:
+### Running the Code
 ```bash
-python Model_Detection_Video.py
+python implementation_1_road/Implementation_1_for_image.py
+```
+or 
+```bash
+python implementation_1_road/Implementation_1_for_video.py
 ```
 
-The system will process the video and detect objects, saving frames with detections to the `detected_frames` folder.
+---
 
-## Requirements
+## 2. LIDAR-based Hazard Detection
 
-- Raspberry Pi 4 Model B
-- Camera
-- Laser range finder
-- Python 3.x
-- OpenCV
-- Pre-trained YOLO Lite or MobileNet SSD models
+This implementation employs a 360-degree LIDAR sensor to detect obstacles within a 30-meter range. The system processes distance data from the LIDAR to identify objects and determine their proximity.
 
-## Contributing
+### Features
+- **360-degree Detection**: Covers the cyclist’s entire surroundings for comprehensive safety.
+- **Distance Alerts**: Triggers alarms based on object proximity and the cyclist’s speed.
+- **Brake Integration**: Optional feature to apply slight braking upon hazard detection.
+
+### Requirements
+- USB WebCamera
+- RPLIDAR A1/A2 360 laser scanner.
+- Python 3.7+.
+
+### Installation
+1. Clone the repository:
+   ```bash
+   git clone https://github.com/IuliaVrabie/CyclistSafetySystem.git
+   ```
+2. Navigate to the LIDAR-based implementation directory:
+   ```bash
+   cd CyclistSafetySystem/Implementation_2
+   ``` 
+3. Install dependencies:
+   ```bash
+   pip install opencv-python numpy tensorflow rplidar ultralytics
+   ```
+4. Connect and configure the LIDAR sensor manual.
+
+### Running the Code
+Run the LIDAR-based detection system using the following command:
+```bash
+python implementation_2_lidar.py
+```
+Ensure the LIDAR sensor is connected and functioning correctly.
+
+---
+
 
 ## License
+This project is licensed under the MIT License. See the `LICENSE` file for details.
+
+---
+
+## Contact
+For further information or support, feel free to contact the project maintainer, [Iulia Vrabie](https://github.com/IuliaVrabie).
+
